@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useState } from 'react'
+import { saveAs } from "file-saver"
 
-function App() {
+const App = () => {
+  const [downloadUrl, setDownloadUrl] = useState("");
+
+  const handleDownloadFile = () => {
+    saveAs(downloadUrl)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1> Download below:</h1>
+      <input placeholder="paste link here" value={downloadUrl} onChange={(e) => setDownloadUrl(e.target.value)} />
+      <button onClick={handleDownloadFile}>Download</button>
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
